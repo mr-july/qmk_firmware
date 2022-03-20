@@ -21,23 +21,19 @@
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-//#define VENDOR_ID       0x0C45
-#define VENDOR_ID       0x05AC
+#define VENDOR_ID       0x0C45
 #define PRODUCT_ID      0x024F
-//#define DEVICE_VER      0x0001
 #define DEVICE_VER      0x0121
 
-//#define MANUFACTURER    Royal Kludge
-//#define PRODUCT         RK61 RGB
-#define MANUFACTURER    SONiX
-#define PRODUCT         USB DEVICE
-//#define DESCRIPTION     RK61 QMK OpenRGB mod
+#define MANUFACTURER    Royal Kludge
+#define PRODUCT         RK61 RGB
+#define DESCRIPTION     RK61 QMK OpenRGB mod
 
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 14
 
-/* The rk 61 retrieves all columns at once, scanning one row at a time*/
+/* The rk 61 retrieves all columns at once, scanning one row at a time */
 #define DIODE_DIRECTION COL2ROW
 
 #define MATRIX_COL_PINS { A8, A9, A10, A11, A12, A13, A14, A15, B0, B1, B2, B3, B4, B5 }
