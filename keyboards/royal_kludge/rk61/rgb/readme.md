@@ -55,3 +55,13 @@ Use the Python program from [this repository](https://github.com/SonixQMK/sonix-
 
 Use the Python program from [this repository](https://github.com/SonixQMK/SonixFlasherC)
 
+## Original firmware
+
+### Unchanged
+
+The original firmware can be found on [Google Drive](https://drive.google.com/drive/folders/1Qx_4Ql_n_4TafIpe-guBf9F-IfuuVHOy)
+
+### Patched
+
+There is a version of original firmware, which was patched to be able to start the keyboard in bootloader mode by holding the `Esc` button while connecting the USB cable. The patched files are available on [Dropbox](https://www.dropbox.com/sh/jy1741tsamyjt6a/AAA58nafcQ_wCTlKke11ck30a?dl=0).
+With this firmware it is possible to switch from QMK to original firmware and back without shorting contacts on PCB.
