@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef KEYMAP_ISO
 // CAPS LED number
 #define CL 27
+// GUI LED number
+#define GL 55
 /* ISO keymap */
 /*
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───────┐
@@ -39,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ├────┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴───┴┬───┤
  * │    │   │   │   │   │   │   │   │   │   │   │   │      │   │
  * ├────┼───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴──┬┴──┬┴──┬───┼───┤
- * │    │    │    │                        │   │   │   │   │   │
+ * │    │ GUI│    │                        │   │   │   │   │   │
  * └────┴────┴────┴────────────────────────┴───┴───┴───┴───┴───┘
  */
 led_config_t g_led_config = {
@@ -48,7 +50,7 @@ led_config_t g_led_config = {
         {14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, NA,},
         {CL, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,},
         {41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, NA,},
-        {54, 55, 56, NA, NA, NA, 57, NA, NA, 58, 59, 60, NA, 61,}
+        {54, GL, 56, NA, NA, NA, 57, NA, NA, 58, 59, 60, NA, 61,}
     },
     {
         {8, 0},   {24, 0},  {39, 0},  {55, 0},   {70, 0},   {86, 0},   {101, 0},  {117, 0},  {132, 0},  {148, 0},  {164, 0},  {180, 0},  {195, 0},  {218, 0},
@@ -79,18 +81,20 @@ led_config_t g_led_config = {
  * ├──────┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────────┤
  * │        │   │   │   │   │   │   │   │   │   │   │          │
  * ├────┬───┴┬──┴─┬─┴───┴───┴───┴───┴───┴──┬┴───┼───┴┬────┬────┤
- * │    │    │    │                        │    │    │    │    │
+ * │    │ GUI│    │                        │    │    │    │    │
  * └────┴────┴────┴────────────────────────┴────┴────┴────┴────┘
  */
 // CAPS LED number
 #define CL 27
+// GUI LED number
+#define GL 54
 led_config_t g_led_config = {
     {
         { 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13,},
         {14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,},
         {CL, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, NA, 40,},
         {41, NA, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, NA,},
-        {53, 54, 55, NA, NA, NA, 56, NA, NA, 57, 58, 59, NA, 60,}
+        {53, GL, 55, NA, NA, NA, 56, NA, NA, 57, 58, 59, NA, 60,}
     },
     {
         {8, 0},   {24, 0},  {39, 0},  {55, 0},   {70, 0},   {86, 0},   {101, 0},  {117, 0},  {132, 0},  {148, 0},  {164, 0},  {180, 0},  {195, 0},  {218, 0},
@@ -112,9 +116,16 @@ led_config_t g_led_config = {
 #endif
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    if (host_keyboard_led_state().caps_lock) {
-        // Set capslock key to orange (capslock is led number defined as `CL`)
+    led_t led_state = host_keyboard_led_state();
+
+    if (led_state.caps_lock) {
+        // Set capslock key to  (capslock is led number defined as `CL`)
         rgb_matrix_set_color(CL, 255, 130, 15);
+    }
+
+    if (keymap_config.no_gui) {
+        // Set GUI key to lemon (GUI is led number defined as `GL`)
+        rgb_matrix_set_color(GL, 255, 230, 15);
     }
 }
 
