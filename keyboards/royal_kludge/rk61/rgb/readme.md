@@ -53,7 +53,7 @@ Use the Python program from [this repository](https://github.com/SonixQMK/sonix-
 
 ### Option 3. SonixFlasherC
 
-Use the Python program from [this repository](https://github.com/SonixQMK/SonixFlasherC)
+Use the C program from [this repository](https://github.com/SonixQMK/SonixFlasherC)
 
 ## Original firmware
 
