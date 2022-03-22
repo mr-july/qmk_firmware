@@ -46,5 +46,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         {   _______,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     KC_F17,     KC_PSCR,    KC_SLCK,    KC_PAUS,    _______,    RGB_HUI,    RGB_SAI,    RGB_VAI,    RGB_MOD,    }, \
         {   RESET,      KC_VOLU,    KC_BRIU,    _______,    _______,    _______,    KC_INS,     KC_HOME,    KC_PGUP,    _______,    RGB_SPD,    RGB_SPI,    RGB_MOD,    TG(_RMODS), }, \
         {   _______,    _______,    KC_VOLD,    KC_BRID,    _______,    _______,    _______,    KC_DEL,     KC_END,     KC_PGDN,    _______,    KC_SLSH,    _______,    _______,    }, \
-        {   _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_RALT,    KC_APP,     KC_RCTL,    _______,    _______,    }  \
+        {   _______,    GUI_TOG,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_RALT,    KC_APP,     KC_RCTL,    _______,    _______,    }  \
     }
