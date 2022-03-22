@@ -27,7 +27,7 @@
 
 #define MANUFACTURER    Royal Kludge
 #define PRODUCT         RK61 RGB
-#define DESCRIPTION     RK61 QMK OpenRGB mod
+#define DESCRIPTION     RK61 QMK OpenRGB
 
 /* key matrix size */
 #define MATRIX_ROWS 5
