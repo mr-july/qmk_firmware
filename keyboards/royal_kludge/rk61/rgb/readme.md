@@ -11,7 +11,7 @@ Tested on the Royal Kludge RK61 non-hotswap RGB dual-mode edition, original PID 
 - PCB: RK61-JX-RGB-HFD; REV: 01; 2019/08/13
 - Wired only, no bluetooth support.
 
-Keyboard Maintainer: [euwbah](https://github.com/euwbah)
+Keyboard Maintainer: [mr-july](https://github.com/mr-july)
 
 For the white-backlit non-rgb version of the RK61, check out [Diff-fusion's repo](https://github.com/Diff-fusion/qmk_firmware)
 
