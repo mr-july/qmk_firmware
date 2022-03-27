@@ -60,14 +60,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * |------+------+------+------+------+------|------+------+------+------+------+------|
 * | Shift|      |  Tab |      | Enter|      |   0  |   1  |   2  |   3  |   ,  |Shift |
 * |------+------+------+------+------+------+------+------+------+------+------+------|
-* | Ctrl | GUI  | Alt  |  M2  |  M1  |    Space    |  M1  |  M2  | Alt  | Esc  | Ctrl |
+* | Ctrl | GUI  | Alt  |  M2  |  M1  |    Space    |  M1  |  M2  | Alt  | Esc  | Del  |
 * `-----------------------------------------------------------------------------------'
 */
 [2] = LAYOUT_planck_grid(
      _______, KC_PGUP, KC_BSPC, KC_UP,   KC_DEL,  KC_PGDN, XXXXXXX, DE_7,    DE_8,    DE_9,    XXXXXXX, KC_INS  ,
      _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  XXXXXXX, DE_4,    DE_5,    DE_6,    DE_DOT,  KC_ENT  ,
      _______, KC_ESC,  KC_TAB,  KC_INS,  KC_ENT,  KC_ENT,  DE_0,    DE_1,    DE_2,    DE_3,    DE_COMM, _______ ,
-     _______, _______, _______, MO(3),   _______, DE_0,    DE_0,    _______, MO(3),   _______, _______, _______
+     _______, _______, _______, MO(3),   _______, DE_0,    DE_0,    _______, MO(3),   _______, _______, KC_DEL
 ),
 
 /* M3 Function & Media Keys
