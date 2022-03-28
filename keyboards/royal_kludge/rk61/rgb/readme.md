@@ -27,7 +27,7 @@ of QMK keycodes](https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes).
 
 Make example for this keyboard (after setting up your build environment):
 
-    make royal_kludge/rk61_rgb:default
+    make royal_kludge/rk61/rgb:default
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
