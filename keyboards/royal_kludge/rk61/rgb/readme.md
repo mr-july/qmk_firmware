@@ -35,6 +35,7 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 
 Enter the bootloader:
 
+- [Sonix Flasher](https://github.com/SonixQMK/sonix-flasher): if you have the original firmware, just start the program and click the "Reboot to Bootloader [HFD]" button.
 - Physical reset: short the two contacts to the left of the space bar switch with a wire/paperclip, accessible from the bottom of PCB.
   ![HW bootloader](imgs/enter-bootloader.jpg)
   After shorting, just connect the USB cable. The keyboard started in bootloader mode and is ready to be flashed.
