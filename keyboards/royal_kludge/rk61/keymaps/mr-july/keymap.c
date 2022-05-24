@@ -38,26 +38,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
 
   switch (keycode) {
-      case RGUI_T(DE_QUES):
-          if (record->tap.count && record->event.pressed) {
-              if (get_mods() & MOD_MASK_SHIFT) {
-                  tap_code16(DE_EXLM); // Send DE_EXLM on shift tap
-              } else {
-                  tap_code16(DE_QUES); // Send DE_QUES on tap
-              }
-              return false;        // Return false to ignore further processing of key
-          }
-          break;
-      case RGUI_T(KC_QUES):
-          if (record->tap.count && record->event.pressed) {
-              if (get_mods() & MOD_MASK_SHIFT) {
-                  tap_code16(KC_EXLM); // Send KC_EXLM on shift tap
-              } else {
-                  tap_code16(KC_QUES); // Send KC_QUES on tap
-              }
-              return false;        // Return false to ignore further processing of key
-          }
-          break;
+    case RGUI_T(DE_QUES):
+      if (record->tap.count && record->event.pressed) {
+        if (get_mods() & MOD_MASK_SHIFT) {
+          tap_code16(DE_EXLM); // Send DE_EXLM on shift tap
+        } else {
+          tap_code16(DE_QUES); // Send DE_QUES on tap
+        }
+        return false;        // Return false to ignore further processing of key
+      }
+      break;
+    case RGUI_T(KC_QUES):
+      if (record->tap.count && record->event.pressed) {
+        if (get_mods() & MOD_MASK_SHIFT) {
+          tap_code16(KC_EXLM); // Send KC_EXLM on shift tap
+        } else {
+          tap_code16(KC_QUES); // Send KC_QUES on tap
+        }
+        return false;        // Return false to ignore further processing of key
+      }
+      break;
   }
 
   return true;
@@ -75,11 +75,11 @@ const key_override_t lcbr_key_override = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, 
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-    &lbrc_key_override,
-    &lcbr_key_override,
-    //&comm_key_override,
-    //&dot_key_override,
-    NULL // Null terminate the array of overrides!
+  &lbrc_key_override,
+  &lcbr_key_override,
+  //&comm_key_override,
+  //&dot_key_override,
+  NULL // Null terminate the array of overrides!
 };
 
 // foreign languages support for CAPS_WORD
@@ -95,7 +95,7 @@ bool caps_word_press_user(uint16_t keycode) {
       add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       return true;
 
-    // Keycodes that continue Caps Word, without shifting.
+      // Keycodes that continue Caps Word, without shifting.
     case KC_1 ... KC_0:
     case KC_BSPC:
     case KC_DEL:
@@ -218,66 +218,66 @@ bool caps_word_press_user(uint16_t keycode) {
 )
 
 enum layer_names {
-    _STD,   // default layer (QWERTY)
-    _RMODS, // custom base layer (DE_)
-    _EN_BAS,// custom base layer (EN_)
-    _DE_SYM,// special symbols: punctuation, braces etc. (DE_)
-    _EN_SYM,// special symbols: punctuation, braces etc. (EN_)
-    _NAV,   // navigation
-    _NUM,   // numbers
-    _FUN,   // functional layer for right hand (F1-F12)
-    _DE_LNG,// foreign languages support (DE_)
-    _EN_LNG,// foreign languages support (EN_)
-    _FN,    // functional layer (F1-F10, backlight controls etc.)
+  _STD,   // default layer (QWERTY)
+  _RMODS, // custom base layer (DE_)
+  _EN_BAS,// custom base layer (EN_)
+  _DE_SYM,// special symbols: punctuation, braces etc. (DE_)
+  _EN_SYM,// special symbols: punctuation, braces etc. (EN_)
+  _NAV,   // navigation
+  _NUM,   // numbers
+  _FUN,   // functional layer for right hand (F1-F12)
+  _DE_LNG,// foreign languages support (DE_)
+  _EN_LNG,// foreign languages support (EN_)
+  _FN,    // functional layer (F1-F10, backlight controls etc.)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_STD] = BASE_KEYMAP,
-    [_RMODS] = LAYOUT_RK61_10x3_DE_BASE( \
-        DE_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
-        HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    DE_H_R5,
-        KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH
-    ),
-    [_DE_SYM] = LAYOUT_RK61_10x3(
-        DE_AT,      DE_UNDS,    DE_LBRC,    DE_RBRC,    DE_CIRC,    DE_EXLM,    DE_LABK,    DE_RABK,    DE_EQL,     DE_AMPR,
-        DE_BSLS,    DE_SLSH,    DE_LCBR,    DE_RCBR,    DE_ASTR,    DE_QUES,    DE_LPRN,    DE_RPRN,    DE_MINS,    DE_COLN,
-        DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_GRV,     DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN
-    ),
-    [_EN_BAS] = LAYOUT_RK61_10x3_EN_BASE( \
-        EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
-        HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    EN_H_R5,
-        KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS
-    ),
-    [_EN_SYM] = LAYOUT_RK61_10x3(
-        KC_AT,      KC_UNDS,    KC_LBRC,    KC_RBRC,    KC_CIRC,    KC_EXLM,    KC_LABK,    KC_RABK,    KC_EQL,     KC_AMPR,
-        KC_BSLS,    KC_SLSH,    KC_LCBR,    KC_RCBR,    KC_ASTR,    KC_QUES,    KC_LPRN,    KC_RPRN,    KC_MINS,    KC_COLN,
-        KC_HASH,    KC_DLR,     KC_PIPE,    KC_TILD,    KC_GRV,     KC_PLUS,    KC_PERC,    KC_DQUO,    KC_QUOT,    KC_SCLN
-    ),
-    [_NAV] = LAYOUT_RK61_10x3(
-        KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
-        KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
-        KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     CPS_WRD,    LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
-    ),
-    [_NUM] = LAYOUT_RK61_10x3_TRANSPARENT(
-        U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,
-        KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PPLS,
-        XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      KC_NLCK,    KC_P1,      KC_P2,      KC_P3,      KC_PDOT,
-                                                        KC_P0
-    ),
-    [_FUN] = LAYOUT_RK61_10x3(
-        U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
-        KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    XXXXXXX,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
-        TO(_RMODS), TO(_EN_BAS),XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10
-    ),
-    [_DE_LNG] = LAYOUT_RK61_10x3(
-        U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
-        KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    DE_EURO,    DE_ODIA,    DE_UDIA,    DE_ADIA,    DE_SS,
-        XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
-    ),
-    [_EN_LNG] = LAYOUT_RK61_10x3(
-        U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
-        KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    EN_EURO,    EN_ODIA,    EN_UDIA,    EN_ADIA,    EN_SS,
-        XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
-    ),
-    [_FN] = FN_KEYMAP
+  [_STD] = BASE_KEYMAP,
+  [_RMODS] = LAYOUT_RK61_10x3_DE_BASE( \
+    DE_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
+    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    DE_H_R5,
+    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH
+  ),
+  [_DE_SYM] = LAYOUT_RK61_10x3(
+    DE_AT,      DE_UNDS,    DE_LBRC,    DE_RBRC,    DE_CIRC,    DE_EXLM,    DE_LABK,    DE_RABK,    DE_EQL,     DE_AMPR,
+    DE_BSLS,    DE_SLSH,    DE_LCBR,    DE_RCBR,    DE_ASTR,    DE_QUES,    DE_LPRN,    DE_RPRN,    DE_MINS,    DE_COLN,
+    DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_GRV,     DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN
+  ),
+  [_EN_BAS] = LAYOUT_RK61_10x3_EN_BASE( \
+    EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
+    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    EN_H_R5,
+    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS
+  ),
+  [_EN_SYM] = LAYOUT_RK61_10x3(
+    KC_AT,      KC_UNDS,    KC_LBRC,    KC_RBRC,    KC_CIRC,    KC_EXLM,    KC_LABK,    KC_RABK,    KC_EQL,     KC_AMPR,
+    KC_BSLS,    KC_SLSH,    KC_LCBR,    KC_RCBR,    KC_ASTR,    KC_QUES,    KC_LPRN,    KC_RPRN,    KC_MINS,    KC_COLN,
+    KC_HASH,    KC_DLR,     KC_PIPE,    KC_TILD,    KC_GRV,     KC_PLUS,    KC_PERC,    KC_DQUO,    KC_QUOT,    KC_SCLN
+  ),
+  [_NAV] = LAYOUT_RK61_10x3(
+    KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
+    KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
+    KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     CPS_WRD,    LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
+  ),
+  [_NUM] = LAYOUT_RK61_10x3_TRANSPARENT(
+    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,
+    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PPLS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      KC_NLCK,    KC_P1,      KC_P2,      KC_P3,      KC_PDOT,
+    KC_P0
+  ),
+  [_FUN] = LAYOUT_RK61_10x3(
+    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
+    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    XXXXXXX,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
+    TO(_RMODS), TO(_EN_BAS),XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10
+  ),
+  [_DE_LNG] = LAYOUT_RK61_10x3(
+    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
+    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    DE_EURO,    DE_ODIA,    DE_UDIA,    DE_ADIA,    DE_SS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
+  ),
+  [_EN_LNG] = LAYOUT_RK61_10x3(
+    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
+    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    EN_EURO,    EN_ODIA,    EN_UDIA,    EN_ADIA,    EN_SS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
+   ),
+  [_FN] = FN_KEYMAP
 };
