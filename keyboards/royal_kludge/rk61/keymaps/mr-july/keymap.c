@@ -140,7 +140,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define U_CUT S(KC_DEL)
 #define U_UND C(DE_Z)
 
-#define LAYOUT_RK61_PATCH_10x3( \
+#define LAYOUT_PATCH_10x3( \
     k0_00,      k0_01,      k0_02,      k0_03,      k0_04,      k0_05,      k0_06,      k0_07,      k0_08,      k0_09,      k0_10,      k0_11,      k0_12,      k0_13,       \
     k1_00,                                                                                                                              k1_11,      k1_12,      k1_13,       \
     k2_00,                                                                                                                              k2_11,      k2_12,      k2_13,       \
@@ -149,7 +149,7 @@ bool caps_word_press_user(uint16_t keycode) {
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
-    ) RK61_LAYOUT(\
+    ) LAYOUT(\
     k0_00,      k0_01,      k0_02,      k0_03,      k0_04,      k0_05,      k0_06,      k0_07,      k0_08,      k0_09,      k0_10,      k0_11,      k0_12,      k0_13,       \
     k1_00,      p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10,      k1_11,      k1_12,      k1_13,       \
     k2_00,      p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10,      k2_11,      k2_12,      k2_13,       \
@@ -157,11 +157,11 @@ bool caps_word_press_user(uint16_t keycode) {
     k4_00,      k4_01,      k4_02,      k4_03,      k4_04,      k4_05,      k4_06,      k4_07,      k4_08,      k4_09,      k4_10,      k4_11,      k4_12,      k4_13        \
 )
 
-#define LAYOUT_RK61_10x3_DE_BASE( \
+#define LAYOUT_10x3_DE_BASE( \
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
-) LAYOUT_RK61_PATCH_10x3( \
+) LAYOUT_PATCH_10x3( \
     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    \
     XXXXXXX,                                                                                                                            XXXXXXX,    XXXXXXX,    XXXXXXX,    \
     HOME_L6,                                                                                                                            XXXXXXX,    XXXXXXX,    KC_ENT,     \
@@ -172,11 +172,11 @@ bool caps_word_press_user(uint16_t keycode) {
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
 )
 
-#define LAYOUT_RK61_10x3_EN_BASE( \
+#define LAYOUT_10x3_EN_BASE( \
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
-) LAYOUT_RK61_PATCH_10x3( \
+) LAYOUT_PATCH_10x3( \
     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    \
     XXXXXXX,                                                                                                                            XXXXXXX,    XXXXXXX,    XXXXXXX,    \
     HOME_L6,                                                                                                                            XXXXXXX,    XXXXXXX,    KC_ENT,     \
@@ -187,12 +187,12 @@ bool caps_word_press_user(uint16_t keycode) {
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
 )
 
-#define LAYOUT_RK61_10x3_TRANSPARENT( \
+#define LAYOUT_10x3_TRANSPARENT( \
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10, \
                                                     space                                                              \
-) LAYOUT_RK61_PATCH_10x3( \
+) LAYOUT_PATCH_10x3( \
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    \
     _______,                                                                                                                            _______,    _______,    _______,    \
     _______,                                                                                                                            _______,    _______,    _______,    \
@@ -203,11 +203,11 @@ bool caps_word_press_user(uint16_t keycode) {
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
 )
 
-#define LAYOUT_RK61_10x3( \
+#define LAYOUT_10x3( \
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10  \
-) LAYOUT_RK61_10x3_TRANSPARENT( \
+) LAYOUT_10x3_TRANSPARENT( \
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10, \
@@ -216,48 +216,48 @@ bool caps_word_press_user(uint16_t keycode) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_STD] = BASE_KEYMAP,
-  [_RMODS] = LAYOUT_RK61_10x3_DE_BASE( \
+  [_RMODS] = LAYOUT_10x3_DE_BASE( \
     DE_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH
   ),
-  [_DE_SYM] = LAYOUT_RK61_10x3(
+  [_DE_SYM] = LAYOUT_10x3(
     DE_AT,      DE_UNDS,    DE_LBRC,    DE_RBRC,    DE_CIRC,    DE_EXLM,    DE_LABK,    DE_RABK,    DE_EQL,     DE_AMPR,
     DE_BSLS,    DE_SLSH,    DE_LCBR,    DE_RCBR,    DE_ASTR,    DE_QUES,    DE_LPRN,    DE_RPRN,    DE_MINS,    DE_COLN,
     DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_GRV,     DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN
   ),
-  [_EN_BAS] = LAYOUT_RK61_10x3_EN_BASE( \
+  [_EN_BAS] = LAYOUT_10x3_EN_BASE( \
     EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS
   ),
-  [_EN_SYM] = LAYOUT_RK61_10x3(
+  [_EN_SYM] = LAYOUT_10x3(
     KC_AT,      KC_UNDS,    KC_LBRC,    KC_RBRC,    KC_CIRC,    KC_EXLM,    KC_LABK,    KC_RABK,    KC_EQL,     KC_AMPR,
     KC_BSLS,    KC_SLSH,    KC_LCBR,    KC_RCBR,    KC_ASTR,    KC_QUES,    KC_LPRN,    KC_RPRN,    KC_MINS,    KC_COLN,
     KC_HASH,    KC_DLR,     KC_PIPE,    KC_TILD,    KC_GRV,     KC_PLUS,    KC_PERC,    KC_DQUO,    KC_QUOT,    KC_SCLN
   ),
-  [_NAV] = LAYOUT_RK61_10x3(
+  [_NAV] = LAYOUT_10x3(
     KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
     KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
     KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     CPS_WRD,    LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
   ),
-  [_NUM] = LAYOUT_RK61_10x3_TRANSPARENT(
+  [_NUM] = LAYOUT_10x3_TRANSPARENT(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PPLS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      KC_NLCK,    KC_P1,      KC_P2,      KC_P3,      KC_PDOT,
     KC_P0
   ),
-  [_FUN] = LAYOUT_RK61_10x3(
+  [_FUN] = LAYOUT_10x3(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    XXXXXXX,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
     TO(_RMODS), TO(_EN_BAS),XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10
   ),
-  [_DE_LNG] = LAYOUT_RK61_10x3(
+  [_DE_LNG] = LAYOUT_10x3(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    DE_EURO,    DE_ODIA,    DE_UDIA,    DE_ADIA,    DE_SS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
   ),
-  [_EN_LNG] = LAYOUT_RK61_10x3(
+  [_EN_LNG] = LAYOUT_10x3(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    EN_EURO,    EN_ODIA,    EN_UDIA,    EN_ADIA,    EN_SS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX
