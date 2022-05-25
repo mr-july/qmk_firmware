@@ -28,9 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // see https://getreuer.info/posts/keyboards/layer-lock/
 #include "features/layer_lock.h"
 
-enum custom_keycodes {
-  LLOCK = SAFE_RANGE,
-};
+bool is_german() {
+  return IS_LAYER_ON(_RMODS);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_caps_word(keycode, record)) { return false; }
@@ -38,22 +38,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
 
   switch (keycode) {
-    case RGUI_T(DE_QUES):
+    case RGUI_T(CU_QUES):
       if (record->tap.count && record->event.pressed) {
-        if (get_mods() & MOD_MASK_SHIFT) {
-          tap_code16(DE_EXLM); // Send DE_EXLM on shift tap
-        } else {
-          tap_code16(DE_QUES); // Send DE_QUES on tap
+        uint16_t exlm = KC_EXLM;
+        uint16_t ques = KC_QUES;
+
+        if (is_german()) {
+          exlm = DE_EXLM;
+          ques = DE_QUES;
         }
-        return false;        // Return false to ignore further processing of key
-      }
-      break;
-    case RGUI_T(KC_QUES):
-      if (record->tap.count && record->event.pressed) {
+
         if (get_mods() & MOD_MASK_SHIFT) {
-          tap_code16(KC_EXLM); // Send KC_EXLM on shift tap
+          tap_code16(exlm); // Send '!' on shift tap
         } else {
-          tap_code16(KC_QUES); // Send KC_QUES on tap
+          tap_code16(ques); // Send '?' on tap
         }
         return false;        // Return false to ignore further processing of key
       }
@@ -109,7 +107,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 #define CPS_WRD LSFT(KC_RSFT)
-#define DE_Q_LN LT(_DE_LNG, KC_Q)
+#define DE_Q_LN LT(_DE_LNG, DE_Q)
 #define EN_Q_LN LT(_EN_LNG, KC_Q)
 
 #define EN_EURO RALT(KC_5)
@@ -129,8 +127,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define HOME_R2 RSFT_T(KC_J)
 #define HOME_R3 RCTL_T(KC_K)
 #define HOME_R4 LALT_T(KC_L)
-#define DE_H_R5 RGUI_T(DE_QUES)
-#define EN_H_R5 RGUI_T(KC_QUES)
+#define HOME_R5 RGUI_T(CU_QUES)
 
 #define ESC_NUM LT(_NUM, KC_ESC)
 #define DE__SYM LT(_DE_SYM, KC_SPC)
@@ -217,25 +214,11 @@ bool caps_word_press_user(uint16_t keycode) {
                                                     _______                                                            \
 )
 
-enum layer_names {
-  _STD,   // default layer (QWERTY)
-  _RMODS, // custom base layer (DE_)
-  _EN_BAS,// custom base layer (EN_)
-  _DE_SYM,// special symbols: punctuation, braces etc. (DE_)
-  _EN_SYM,// special symbols: punctuation, braces etc. (EN_)
-  _NAV,   // navigation
-  _NUM,   // numbers
-  _FUN,   // functional layer for right hand (F1-F12)
-  _DE_LNG,// foreign languages support (DE_)
-  _EN_LNG,// foreign languages support (EN_)
-  _FN,    // functional layer (F1-F10, backlight controls etc.)
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_STD] = BASE_KEYMAP,
   [_RMODS] = LAYOUT_RK61_10x3_DE_BASE( \
     DE_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
-    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    DE_H_R5,
+    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH
   ),
   [_DE_SYM] = LAYOUT_RK61_10x3(
@@ -245,7 +228,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_EN_BAS] = LAYOUT_RK61_10x3_EN_BASE( \
     EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
-    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    EN_H_R5,
+    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS
   ),
   [_EN_SYM] = LAYOUT_RK61_10x3(
