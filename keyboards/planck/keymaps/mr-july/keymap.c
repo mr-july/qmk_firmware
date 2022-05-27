@@ -15,6 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// needed for debugging
+//#include "print.h"
 #include "keymap_german.h"
 #include "../../../layouts/community/ortho_4x12/manna-harbour_miryoku/config.h"
 
@@ -26,56 +28,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // see https://getreuer.info/posts/keyboards/layer-lock/
 #include "features/layer_lock.h"
 
-
-bool is_german() {
-  return IS_LAYER_ON(_DE_BAS);
+// activate debugging programmatically
+/*
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  debug_keyboard=true;
+  //debug_mouse=true;
 }
+*/
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_caps_word(keycode, record)) { return false; }
 
   if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
 
-  switch (keycode) {
-    case RGUI_T(CU_QUES):
-      if (record->tap.count && record->event.pressed) {
-        uint16_t exlm = KC_EXLM;
-        uint16_t ques = KC_QUES;
-
-        if (is_german()) {
-          exlm = DE_EXLM;
-          ques = DE_QUES;
-        }
-
-        if (get_mods() & MOD_MASK_SHIFT) {
-          tap_code16(exlm); // Send '!' on shift tap
-        } else {
-          tap_code16(ques); // Send '?' on tap
-        }
-        return false;       // Return false to ignore further processing of key
-      }
-      break;
-  }
+/*
+  // If console is enabled, it will print the matrix position and status of each key pressed
+#ifdef CONSOLE_ENABLE
+    uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u, mods: %x\n",
+      keycode, record->event.key.col, record->event.key.row,
+      record->event.pressed, record->event.time,
+      record->tap.interrupted, record->tap.count,
+      get_mods());
+#endif
+*/
 
   return true;
 }
 
 // Key overrides (https://docs.qmk.fm/#/feature_key_overrides)
 // shift + '[' = ']'
-const key_override_t ko_de_lbrc = ko_make_basic(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC);
+const key_override_t ko_de_s_lbrc = ko_make_basic(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC);
 // shift + '{' = '}'
-const key_override_t ko_de_lcbr = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR);
+const key_override_t ko_de_s_lcbr = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR);
 // shift + ',' = ';' on main english layer
-const key_override_t ko_en_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, 1 << _EN_BAS);
+const key_override_t ko_en_s_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, 1 << _EN_BAS);
 // shift + '.' = ':' on main english layer
-const key_override_t ko_en_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, 1 << _EN_BAS);
+const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, 1 << _EN_BAS);
+
+// special handling of the right pinky key on home row is needed because of mod-tap with RGUI
+const key_override_t ko_de___ques = ko_make_with_layers(0, RGUI_T(CU_QUES), DE_QUES, 1 << _DE_BAS);
+const key_override_t ko_de_s_exlm = ko_make_with_layers(MOD_MASK_SHIFT, RGUI_T(CU_QUES), DE_EXLM, 1 << _DE_BAS);
+const key_override_t ko_en___ques = ko_make_with_layers(0, RGUI_T(CU_QUES), KC_QUES, 1 << _EN_BAS);
+const key_override_t ko_en_s_exlm = ko_make_with_layers(MOD_MASK_SHIFT, RGUI_T(CU_QUES), KC_EXLM, 1 << _EN_BAS);
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-  &ko_de_lbrc,
-  &ko_de_lcbr,
-  &ko_en_comm,
-  &ko_en_dot,
+  &ko_de_s_lbrc,
+  &ko_de_s_lcbr,
+  &ko_en_s_comm,
+  &ko_en_s_dot,
+  &ko_de_s_exlm,
+  &ko_de___ques,
+  &ko_en_s_exlm,
+  &ko_en___ques,
   NULL // Null terminate the array of overrides!
 };
 
