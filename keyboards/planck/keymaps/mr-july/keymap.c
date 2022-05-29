@@ -15,6 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include QMK_KEYBOARD_H
+
 // needed for debugging
 //#include "print.h"
 #include "keymap_german.h"
@@ -38,6 +40,25 @@ void keyboard_post_init_user(void) {
   //debug_mouse=true;
 }
 */
+
+enum custom_keycodes {
+  LLOCK = SAFE_RANGE,
+  CU_QUES,
+  CU_EXLM,
+};
+
+enum layer_names {
+  _DE_BAS,// custom base layer (DE_)
+  _EN_BAS,// custom base layer (EN_)
+  _DE_SYM,// special symbols: punctuation, braces etc. (DE_)
+  _EN_SYM,// special symbols: punctuation, braces etc. (EN_)
+  _NAV,   // navigation
+  _MOU,   // mouse
+  _NUM,   // numbers
+  _FUN,   // functional layer for right hand (F1-F12)
+  _DE_LNG,// foreign languages support (DE_)
+  _EN_LNG,// foreign languages support (EN_)
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_caps_word(keycode, record)) { return false; }
