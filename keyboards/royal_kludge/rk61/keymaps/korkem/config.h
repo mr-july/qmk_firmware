@@ -19,5 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define KEYMAP_ISO 1
 
-#define IGNORE_MOD_TAP_INTERRUPT // allow fast typing on home row mods
+// allow fast typing on home row mods
+#define IGNORE_MOD_TAP_INTERRUPT
 
+// enable rapid switch from tap to hold, disables double tap hold auto-repeat
+#define TAPPING_FORCE_HOLD
