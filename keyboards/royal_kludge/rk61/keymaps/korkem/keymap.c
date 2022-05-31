@@ -96,7 +96,7 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_STD] = BASE_KEYMAP,
-  [_DE_BAS] = LAYOUT_korkem( \
+  [_DE_BAS] = LAYOUT_korkem(
     DE_Q_LN,    DE_W,       DE_E,       DE_R,       DE_T,       DE_Z,       DE_U,       DE_I,       DE_O,       DE_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    DE_G,       DE_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     DE_Y,       DE_X,       DE_C,       DE_V,       DE_B,       DE_N,       DE_M,       DE_COMM,    DE_DOT,     DE_MINS,
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_GRV,     DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN,
                                   KC_TAB,     KC_ESC,     XXXXXXX,    KC_BSPC,    KC_ENT
   ),
-  [_EN_BAS] = LAYOUT_korkem( \
+  [_EN_BAS] = LAYOUT_korkem(
     EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS,
