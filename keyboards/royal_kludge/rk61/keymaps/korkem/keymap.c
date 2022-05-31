@@ -50,11 +50,10 @@ enum layer_names {
 
 #define IS_GERMAN IS_LAYER_ON(_DE_BAS)
 
-// remove after merge of official CAPS_WORD support
+// TODO: remove after merge of official CAPS_WORD support
 #define CAPSWRD LSFT(KC_RSFT)
-#define DE_Q_LN LT(_DE_LNG, DE_Q)
-#define EN_Q_LN LT(_EN_LNG, KC_Q)
 
+// german specific symbol keys available on english international keyboard
 #define EN_EURO RALT(KC_5)
 #define EN_ODIA RALT(KC_P)
 #define EN_UDIA RALT(KC_Y)
@@ -74,12 +73,18 @@ enum layer_names {
 #define HOME_R4 LALT_T(KC_L)
 #define HOME_R5 RGUI_T(CU_QUES)
 
+// layer activation
 #define ESC_NUM LT(_NUM, KC_ESC)
 #define DE__SYM LT(_DE_SYM, KC_SPC)
 #define EN__SYM LT(_EN_SYM, KC_SPC)
 #define BSP_NAV LT(_NAV, KC_BSPC)
 #define ENT_MOU LT(_MOU, KC_ENT)
 
+// foreign languages support activation
+#define DE_Q_LN LT(_DE_LNG, DE_Q)
+#define EN_Q_LN LT(_EN_LNG, KC_Q)
+
+// shortcuts
 #define U_RDO C(S(DE_Z))
 #define U_PST S(KC_INS)
 #define U_CPY C(KC_INS)
@@ -155,6 +160,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+// Key overrides (https://docs.qmk.fm/#/feature_key_overrides)
+// shift + '[' = ']'
+const key_override_t ko_de_s_lbrc = ko_make_basic(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC);
+// shift + '{' = '}'
+const key_override_t ko_de_s_lcbr = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR);
+// shift + ',' = ';' on main english layer
+const key_override_t ko_en_s_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, 1 << _EN_BAS);
+// shift + '.' = ':' on main english layer
+const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, 1 << _EN_BAS);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+  &ko_de_s_lbrc,
+  &ko_de_s_lcbr,
+  &ko_en_s_comm,
+  &ko_en_s_dot,
+  NULL // Null terminate the array of overrides!
+};
+
+// allow different keys for normal and shifted states on mod-tap modifiers
 bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case HOME_R5:
@@ -175,33 +200,6 @@ bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
 
   return true;
 }
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  return
-    process_caps_word(keycode, record) &&
-    process_layer_lock(keycode, record, LLOCK) &&
-    process_custom_mod_tap(keycode, record) &&
-    true;
-}
-
-// Key overrides (https://docs.qmk.fm/#/feature_key_overrides)
-// shift + '[' = ']'
-const key_override_t ko_de_s_lbrc = ko_make_basic(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC);
-// shift + '{' = '}'
-const key_override_t ko_de_s_lcbr = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR);
-// shift + ',' = ';' on main english layer
-const key_override_t ko_en_s_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, 1 << _EN_BAS);
-// shift + '.' = ':' on main english layer
-const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, 1 << _EN_BAS);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-  &ko_de_s_lbrc,
-  &ko_de_s_lcbr,
-  &ko_en_s_comm,
-  &ko_en_s_dot,
-  NULL // Null terminate the array of overrides!
-};
 
 // foreign languages support for CAPS_WORD
 bool caps_word_press_user(uint16_t keycode) {
@@ -240,3 +238,14 @@ bool caps_word_press_user(uint16_t keycode) {
 
   return false;  // Deactivate Caps Word.
 }
+
+// custom event processing
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  return
+    // TODO: remove after merge of official CAPS_WORD support
+    process_caps_word(keycode, record) &&
+    process_layer_lock(keycode, record, LLOCK) &&
+    process_custom_mod_tap(keycode, record) &&
+    true;
+}
+
