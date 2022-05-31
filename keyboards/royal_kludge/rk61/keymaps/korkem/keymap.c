@@ -143,9 +143,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             KC_TAB,     XXXXXXX,          KC_P0,            KC_BSPC,    KC_ENT
   ),
   [_FUN] = LAYOUT_korkem(
-    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
-    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    XXXXXXX,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
-    DE_BASE,    EN_BASE,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
+    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSCR,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
+    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_SLCK,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
+    DE_BASE,    EN_BASE,    XXXXXXX,    KC_ENT,     LLOCK,      KC_PAUS,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
                             XXXXXXX,    KC_ESC,           KC_SPC,           KC_BSPC,    KC_ENT
   ),
   [_DE_LNG] = LAYOUT_korkem(
