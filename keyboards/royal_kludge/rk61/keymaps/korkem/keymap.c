@@ -84,6 +84,10 @@ enum layer_names {
 #define DE_Q_LN LT(_DE_LNG, DE_Q)
 #define EN_Q_LN LT(_EN_LNG, KC_Q)
 
+// layer toggle
+#define DE_BASE TO(_DE_BAS)
+#define EN_BASE TO(_EN_BAS)
+
 // shortcuts
 #define U_RDO C(S(DE_Z))
 #define U_PST S(KC_INS)
@@ -100,61 +104,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     DE_Q_LN,    DE_W,       DE_E,       DE_R,       DE_T,       DE_Z,       DE_U,       DE_I,       DE_O,       DE_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    DE_G,       DE_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
     DE_Y,       DE_X,       DE_C,       DE_V,       DE_B,       DE_N,       DE_M,       DE_COMM,    DE_DOT,     DE_MINS,
-                                  HOME_L6,    ESC_NUM,    DE__SYM,    BSP_NAV,    ENT_MOU
+                            HOME_L6,    ESC_NUM,          DE__SYM,          BSP_NAV,    ENT_MOU
   ),
   [_DE_SYM] = LAYOUT_korkem(
     DE_AT,      DE_UNDS,    DE_LBRC,    DE_RBRC,    DE_CIRC,    DE_EXLM,    DE_LABK,    DE_RABK,    DE_EQL,     DE_AMPR,
     DE_BSLS,    DE_SLSH,    DE_LCBR,    DE_RCBR,    DE_ASTR,    DE_QUES,    DE_LPRN,    DE_RPRN,    DE_MINS,    DE_COLN,
     DE_HASH,    DE_DLR,     DE_PIPE,    DE_TILD,    DE_GRV,     DE_PLUS,    DE_PERC,    DE_DQUO,    DE_QUOT,    DE_SCLN,
-                                  KC_TAB,     KC_ESC,     XXXXXXX,    KC_BSPC,    KC_ENT
+                            KC_TAB,     KC_ESC,           XXXXXXX,          KC_BSPC,    KC_ENT
   ),
   [_EN_BAS] = LAYOUT_korkem(
-    EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,
+    EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Z,       KC_U,       KC_I,       KC_O,       KC_P,
     HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
-    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS,
-                                  HOME_L6,    ESC_NUM,    EN__SYM,    BSP_NAV,    KC_ENT
+    KC_Y,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_MINS,
+                            HOME_L6,    ESC_NUM,          EN__SYM,          BSP_NAV,    KC_ENT
   ),
   [_EN_SYM] = LAYOUT_korkem(
     KC_AT,      KC_UNDS,    KC_LBRC,    KC_RBRC,    KC_CIRC,    KC_EXLM,    KC_LABK,    KC_RABK,    KC_EQL,     KC_AMPR,
     KC_BSLS,    KC_SLSH,    KC_LCBR,    KC_RCBR,    KC_ASTR,    KC_QUES,    KC_LPRN,    KC_RPRN,    KC_MINS,    KC_COLN,
     KC_HASH,    KC_DLR,     KC_PIPE,    KC_TILD,    KC_GRV,     KC_PLUS,    KC_PERC,    KC_DQUO,    KC_QUOT,    KC_SCLN,
-                                  KC_TAB,     KC_ESC,     XXXXXXX,    KC_BSPC,    KC_ENT
+                            KC_TAB,     KC_ESC,           XXXXXXX,          KC_BSPC,    KC_ENT
   ),
   [_NAV] = LAYOUT_korkem(
     KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
     KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
     KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     CAPSWRD,    LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                                  KC_TAB,     KC_ESC,     KC_SPC,     XXXXXXX,    KC_ENT
+                            KC_TAB,     KC_ESC,           KC_SPC,           XXXXXXX,    KC_ENT
   ),
   [_MOU] = LAYOUT_korkem(
     KC_WH_U,    KC_WH_U,    KC_MS_U,    KC_WH_D,    KC_WH_D,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    RESET,
     KC_WH_L,    KC_MS_L,    KC_MS_D,    KC_MS_R,    KC_WH_R,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                                  KC_TAB,     KC_ESC,     KC_SPC,     KC_BSPC,    XXXXXXX
+                            KC_TAB,     KC_ESC,           KC_SPC,           KC_BSPC,    XXXXXXX
   ),
   [_NUM] = LAYOUT_korkem(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PPLS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      KC_NLCK,    KC_P1,      KC_P2,      KC_P3,      KC_PDOT,
-                                  KC_TAB,     XXXXXXX,    KC_P0,      KC_BSPC,    KC_ENT
+                            KC_TAB,     XXXXXXX,          KC_P0,            KC_BSPC,    KC_ENT
   ),
   [_FUN] = LAYOUT_korkem(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    XXXXXXX,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
-    TO(_DE_BAS), TO(_EN_BAS),XXXXXXX,   KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
-                                  XXXXXXX,    KC_ESC,     KC_SPC,     KC_BSPC,    KC_ENT
+    DE_BASE,    EN_BASE,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
+                            XXXXXXX,    KC_ESC,           KC_SPC,           KC_BSPC,    KC_ENT
   ),
   [_DE_LNG] = LAYOUT_korkem(
     XXXXXXX,    U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    DE_CIRC,    DE_LBRC,    DE_LCBR,    XXXXXXX,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    DE_EURO,    DE_ODIA,    DE_UDIA,    DE_ADIA,    DE_SS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                                  KC_TAB,     KC_ESC,     KC_SPC,     KC_BSPC,    KC_ENT
+                            KC_TAB,     KC_ESC,           KC_SPC,           KC_BSPC,    KC_ENT
   ),
   [_EN_LNG] = LAYOUT_korkem(
     XXXXXXX,    U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    KC_CIRC,    KC_LBRC,    KC_LCBR,    XXXXXXX,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    EN_EURO,    EN_ODIA,    EN_UDIA,    EN_ADIA,    EN_SS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                                  KC_TAB,     KC_ESC,     KC_SPC,     KC_BSPC,    KC_ENT
+                            KC_TAB,     KC_ESC,           KC_SPC,           KC_BSPC,    KC_ENT
    ),
   [_FN] = FN_KEYMAP
 };

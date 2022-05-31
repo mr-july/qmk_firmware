@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10, \
-                                  p4_01,      p4_02,      p4_03,      p4_04,      p4_05                                \
+                            p4_01,      p4_02,            p4_03,            p4_04,      p4_05                          \
     ) LAYOUT(\
     k0_00,      k0_01,      k0_02,      k0_03,      k0_04,      k0_05,      k0_06,      k0_07,      k0_08,      k0_09,      k0_10,      k0_11,      k0_12,      k0_13,       \
     k1_00,      p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10,      k1_11,      k1_12,      k1_13,       \
@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10, \
-                                  p4_01,      p4_02,      p4_03,      p4_04,      p4_05                                \
+                            p4_01,      p4_02,            p4_03,            p4_04,      p4_05                          \
 ) LAYOUT_PATCH_korkem( \
     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    \
     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    \
@@ -52,6 +52,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     p1_01,      p1_02,      p1_03,      p1_04,      p1_05,      p1_06,      p1_07,      p1_08,      p1_09,      p1_10, \
     p2_01,      p2_02,      p2_03,      p2_04,      p2_05,      p2_06,      p2_07,      p2_08,      p2_09,      p2_10, \
     p3_01,      p3_02,      p3_03,      p3_04,      p3_05,      p3_06,      p3_07,      p3_08,      p3_09,      p3_10, \
-                                  p4_01,      p4_02,      p4_03,      p4_04,      p4_05                                \
+                            p4_01,      p4_02,            p4_03,            p4_04,      p4_05                          \
 )
 
