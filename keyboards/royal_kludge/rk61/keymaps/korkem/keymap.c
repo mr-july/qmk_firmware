@@ -199,7 +199,6 @@ bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
         }
         return false;       // Return false to ignore further processing of key
       }
-      break;
   }
 
   return true;
