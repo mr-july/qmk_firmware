@@ -42,21 +42,21 @@ void keyboard_post_init_user(void) {
 */
 
 enum custom_keycodes {
-  LLOCK = SAFE_RANGE,
-  CU_QUES,
+    LLOCK = SAFE_RANGE,
+    CU_QUES,
 };
 
 enum layer_names {
-  _DE_BAS,  // custom base layer (DE_)
-  _EN_BAS,  // custom base layer (EN_)
-  _DE_SYM,  // special symbols: punctuation, braces etc. (DE_)
-  _EN_SYM,  // special symbols: punctuation, braces etc. (EN_)
-  _NAV,     // navigation
-  _MOU,     // mouse
-  _NUM,     // numbers
-  _FUN,     // functional layer for right hand (F1-F12)
-  _DE_LNG,  // foreign languages support (DE_)
-  _EN_LNG,  // foreign languages support (EN_)
+    _DE_BAS,  // custom base layer (DE_)
+    _EN_BAS,  // custom base layer (EN_)
+    _DE_SYM,  // special symbols: punctuation, braces etc. (DE_)
+    _EN_SYM,  // special symbols: punctuation, braces etc. (EN_)
+    _NAV,     // navigation
+    _MOU,     // mouse
+    _NUM,     // numbers
+    _FUN,     // functional layer for right hand (F1-F12)
+    _DE_LNG,  // foreign languages support (DE_)
+    _EN_LNG,  // foreign languages support (EN_)
 };
 
 #define IS_GERMAN IS_LAYER_ON(_DE_BAS)
@@ -109,6 +109,7 @@ enum layer_names {
 #define U_CUT S(KC_DEL)
 #define U_UND C(DE_Z)
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_DE_BAS] = LAYOUT_miryoku(
     DE_Q_LN,    DE_W,       DE_E,       DE_R,       DE_T,       DE_Z,       DE_U,       DE_I,       DE_O,       DE_P,
@@ -171,6 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,    XXXXXXX,    KC_ESC,     KC_SPC,     KC_TAB,     KC_ENT,     KC_BSPC,    KC_DEL,     XXXXXXX,    XXXXXXX
   ),
 };
+// clang-format on
 
 // Key overrides (https://docs.qmk.fm/#/feature_key_overrides)
 // shift + '[' = ']'
@@ -184,85 +186,82 @@ const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, K
 
 // This globally defines all key overrides to be used
 const key_override_t** key_overrides = (const key_override_t*[]){
-  &ko_de_s_lbrc, &ko_de_s_lcbr, &ko_en_s_comm, &ko_en_s_dot,
-  NULL  // Null terminate the array of overrides!
+    &ko_de_s_lbrc, &ko_de_s_lcbr, &ko_en_s_comm, &ko_en_s_dot,
+    NULL  // Null terminate the array of overrides!
 };
 
 // allow different keys for normal and shifted states on mod-tap modifiers
 bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case HOME_R5:
-      if (record->tap.count && record->event.pressed) {
-        bool     is_german = IS_GERMAN;
-        uint16_t exlm      = is_german ? DE_EXLM : KC_EXLM;
-        uint16_t ques      = is_german ? DE_QUES : KC_QUES;
+    switch (keycode) {
+        case HOME_R5:
+            if (record->tap.count && record->event.pressed) {
+                bool     is_german = IS_GERMAN;
+                uint16_t exlm      = is_german ? DE_EXLM : KC_EXLM;
+                uint16_t ques      = is_german ? DE_QUES : KC_QUES;
 
-        if (get_mods() & MOD_MASK_SHIFT) {
-          tap_code16(exlm);  // Send '!' on shift tap
-        } else {
-          tap_code16(ques);  // Send '?' on tap
-        }
-        return false;  // Return false to ignore further processing of key
-      }
-  }
+                if (get_mods() & MOD_MASK_SHIFT) {
+                    tap_code16(exlm);  // Send '!' on shift tap
+                } else {
+                    tap_code16(ques);  // Send '?' on tap
+                }
+                return false;  // Return false to ignore further processing of key
+            }
+    }
 
-  return true;
+    return true;
 }
 
 // foreign languages support for CAPS_WORD
 bool caps_word_press_user(uint16_t keycode) {
-  switch (keycode) {
-    // Keycodes that continue Caps Word, with shift applied.
-    case KC_A ... KC_Z:
-      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-    // Keycodes that continue Caps Word, without shifting.
-    case KC_1 ... KC_0:
-    case KC_BSPC:
-    case KC_DEL:
-      return true;
-  }
-
-  if (IS_GERMAN) {
     switch (keycode) {
-      case DE_ADIA:
-      case DE_ODIA:
-      case DE_UDIA:
-      case DE_MINS:
-        add_weak_mods(MOD_BIT(KC_LSFT));
-      case DE_UNDS:
-        return true;
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+            return true;
     }
-  } else {
-    switch (keycode) {
-      case EN_ADIA:
-      case EN_ODIA:
-      case EN_UDIA:
-      case KC_MINS:
-        add_weak_mods(MOD_BIT(KC_LSFT));
-      case KC_UNDS:
-        return true;
-    }
-  }
 
-  return false;  // Deactivate Caps Word.
+    if (IS_GERMAN) {
+        switch (keycode) {
+            case DE_ADIA:
+            case DE_ODIA:
+            case DE_UDIA:
+            case DE_MINS:
+                add_weak_mods(MOD_BIT(KC_LSFT));
+            case DE_UNDS:
+                return true;
+        }
+    } else {
+        switch (keycode) {
+            case EN_ADIA:
+            case EN_ODIA:
+            case EN_UDIA:
+            case KC_MINS:
+                add_weak_mods(MOD_BIT(KC_LSFT));
+            case KC_UNDS:
+                return true;
+        }
+    }
+
+    return false;  // Deactivate Caps Word.
 }
 
 // custom event processing
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-/*
-// If console is enabled, it will print the matrix position and status of each key pressed
-#ifdef CONSOLE_ENABLE
-  uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u, mods: %x\n",
-    keycode, record->event.key.col, record->event.key.row,
-    record->event.pressed, record->event.time,
-    record->tap.interrupted, record->tap.count,
-    get_mods());
-#endif
-*/
-  return
-    // TODO: remove after merge of official CAPS_WORD support
-    process_caps_word(keycode, record) &&
-    process_layer_lock(keycode, record, LLOCK) &&
-    process_custom_mod_tap(keycode, record) &&
-    true;
+    /*
+    // If console is enabled, it will print the matrix position and status of each key pressed
+    #ifdef CONSOLE_ENABLE
+      uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u, mods: %x\n",
+        keycode, record->event.key.col, record->event.key.row,
+        record->event.pressed, record->event.time,
+        record->tap.interrupted, record->tap.count,
+        get_mods());
+    #endif
+    */
+    return
+        // TODO: remove after merge of official CAPS_WORD support
+        process_caps_word(keycode, record) && process_layer_lock(keycode, record, LLOCK) && process_custom_mod_tap(keycode, record) && true;
 }
