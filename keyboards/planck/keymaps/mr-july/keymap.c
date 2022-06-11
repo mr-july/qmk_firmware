@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
     KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
     KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     KC_ENT,     LLOCK,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-    XXXXXXX,    XXXXXXX,    KC_ESC,     KC_SPC,     KC_TAB,     KC_ENT,     XXXXXXX,    KC_DEL,     XXXXXXX,    XXXXXXX
+    XXXXXXX,    XXXXXXX,    KC_APP,     KC_SPC,     KC_TAB,     KC_ENT,     XXXXXXX,    KC_DEL,     XXXXXXX,    XXXXXXX
   ),
   [_MOU]    = LAYOUT_miryoku(
     KC_WH_U,    KC_WH_U,    KC_MS_U,    KC_WH_D,    KC_WH_D,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    RESET,
