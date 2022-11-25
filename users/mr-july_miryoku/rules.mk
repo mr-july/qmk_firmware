@@ -18,8 +18,7 @@ KEY_OVERRIDE_ENABLE = yes   # Enable send different key codes depending on the m
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 
-BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
-RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight
-
 COMMAND_ENABLE = no         # Enable the way to change keyboard’s behavior without having to flash or unplug it
 CAPS_WORD_ENABLE = yes      # Enable the CAPS_WORD support
+
+INTROSPECTION_KEYMAP_C = mr-july_miryoku.c # keymaps
