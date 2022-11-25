@@ -18,3 +18,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define MIRYOKU_MAPPING_EXTENDED_THUMBS
+
+#include "../../../../layouts/community/ortho_4x12/manna-harbour_miryoku/config.h"

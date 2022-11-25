@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // needed for debugging
 //#include "print.h"
 #include "keymap_german.h"
-#include "../../../../layouts/community/ortho_4x12/manna-harbour_miryoku/config.h"
 
 // activate debugging programmatically
 /*
