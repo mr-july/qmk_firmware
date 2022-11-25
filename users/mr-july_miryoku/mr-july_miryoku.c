@@ -59,7 +59,6 @@ enum layer_names {
 #define EN_SS RALT(KC_S)
 
 // Left-hand home row mods
-#define HOME_L6 LT(_FUN, KC_TAB)
 #define HOME_L5 LGUI_T(KC_A)
 #define HOME_L4 LALT_T(KC_S)
 #define HOME_L3 LCTL_T(KC_D)
