@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <sys/_stdint.h>
 #include QMK_KEYBOARD_H
 
 // needed for debugging
@@ -38,7 +39,9 @@ enum custom_keycodes {
 
 enum layer_names {
     _DE_BAS,  // custom base layer (DE_)
+    _DW_BAS,  // custom Workman base layer (DE_)
     _EN_BAS,  // custom base layer (EN_)
+    _EW_BAS,  // custom Workman base layer (EN_)
     _DE_SYM,  // special symbols: punctuation, braces etc. (DE_)
     _EN_SYM,  // special symbols: punctuation, braces etc. (EN_)
     _NAV,     // navigation
@@ -49,7 +52,7 @@ enum layer_names {
     _EN_LNG,  // foreign languages support (EN_)
 };
 
-#define IS_GERMAN IS_LAYER_ON(_DE_BAS)
+#define IS_GERMAN IS_LAYER_ON(_DE_BAS) || IS_LAYER_ON(_DW_BAS)
 
 // german specific symbol keys available on english international keyboard
 #define EN_EURO RALT(KC_5)
@@ -58,21 +61,35 @@ enum layer_names {
 #define EN_ADIA RALT(KC_Q)
 #define EN_SS RALT(KC_S)
 
-// Left-hand home row mods
-#define HOME_L5 LGUI_T(KC_A)
-#define HOME_L4 LALT_T(KC_S)
-#define HOME_L3 LCTL_T(KC_D)
-#define HOME_L2 LSFT_T(KC_F)
+// QUERTY Left-hand home row mods
+#define QWERT_A LGUI_T(KC_A)
+#define QWERT_S LALT_T(KC_S)
+#define QWERT_D LCTL_T(KC_D)
+#define QWERT_F LSFT_T(KC_F)
 
-// Right-hand home row mods
-#define HOME_R2 RSFT_T(KC_J)
-#define HOME_R3 RCTL_T(KC_K)
-#define HOME_R4 LALT_T(KC_L)
-#define HOME_R5 RGUI_T(CU_QUES)
+// QUERTY Right-hand home row mods
+#define QWERT_J RSFT_T(KC_J)
+#define QWERT_K RCTL_T(KC_K)
+#define QWERT_L LALT_T(KC_L)
+#define QUE_EXL RGUI_T(CU_QUES)
+
+// Workman Left-hand home row mods
+#define WRKMN_A LGUI_T(KC_A)
+#define WRKMN_S LALT_T(KC_S)
+#define WRKMN_H LCTL_T(KC_H)
+#define WRKMN_T LSFT_T(KC_T)
+
+// Workman Right-hand home row mods
+#define WRKMN_N RSFT_T(KC_N)
+#define WRKMN_E RCTL_T(KC_E)
+#define WRKMN_O LALT_T(KC_O)
+#define WRKMN_I RGUI_T(KC_I)
 
 // layer activation
 #define DE_Y_FN LT(_FUN, DE_Y)
 #define EN_Y_FN LT(_FUN, KC_Y)
+#define DE_Z_FN LT(_FUN, DE_Z)
+#define EN_Z_FN LT(_FUN, KC_Z)
 #define TAB_NUM LT(_NUM, KC_TAB)
 #define DE_SPSM LT(_DE_SYM, KC_SPC)
 #define EN_SPSM LT(_EN_SYM, KC_SPC)
@@ -86,6 +103,8 @@ enum layer_names {
 // layer toggle
 #define DE_BASE TO(_DE_BAS)
 #define EN_BASE TO(_EN_BAS)
+#define DW_BASE TO(_DW_BAS)
+#define EW_BASE TO(_EW_BAS)
 
 // shortcuts
 #define U_RDO C(S(DE_Z))
@@ -98,8 +117,14 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_DE_BAS] = LAYOUT_ozinshi(
     DE_Q_LN,    DE_W,       DE_E,       DE_R,       DE_T,       DE_Z,       DE_U,       DE_I,       DE_O,       DE_P,
-    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    DE_G,       DE_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
+    QWERT_A,    QWERT_S,    QWERT_D,    QWERT_F,    DE_G,       DE_H,       QWERT_J,    QWERT_K,    QWERT_L,    QUE_EXL,
     DE_Y_FN,    DE_X,       DE_C,       DE_V,       DE_B,       DE_N,       DE_M,       DE_COMM,    DE_DOT,     ENT_MOU,
+                            TAB_NUM,                     DE_SPSM,                       BSP_NAV
+  ),
+  [_DW_BAS] = LAYOUT_ozinshi(
+    DE_Q_LN,    DE_D,       DE_R,       DE_W,       DE_B,       DE_J,       DE_F,       DE_U,       DE_P,       CU_QUES,
+    WRKMN_A,    WRKMN_S,    WRKMN_H,    WRKMN_T,    DE_G,       DE_Y,       WRKMN_N,    WRKMN_E,    WRKMN_O,    WRKMN_I,
+    DE_Z_FN,    DE_X,       DE_M,       DE_C,       DE_V,       DE_K,       DE_L,       DE_COMM,    DE_DOT,     ENT_MOU,
                             TAB_NUM,                     DE_SPSM,                       BSP_NAV
   ),
   [_DE_SYM] = LAYOUT_ozinshi(
@@ -110,8 +135,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [_EN_BAS] = LAYOUT_ozinshi(
     EN_Q_LN,    KC_W,       KC_E,       KC_R,       KC_T,       KC_Z,       KC_U,       KC_I,       KC_O,       KC_P,
-    HOME_L5,    HOME_L4,    HOME_L3,    HOME_L2,    KC_G,       KC_H,       HOME_R2,    HOME_R3,    HOME_R4,    HOME_R5,
+    QWERT_A,    QWERT_S,    QWERT_D,    QWERT_F,    KC_G,       KC_H,       QWERT_J,    QWERT_K,    QWERT_L,    QUE_EXL,
     EN_Y_FN,    KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     ENT_MOU,
+                            TAB_NUM,                     EN_SPSM,                       BSP_NAV
+  ),
+  [_EW_BAS] = LAYOUT_ozinshi(
+    EN_Q_LN,    KC_D,       KC_R,       KC_W,       KC_B,       KC_J,       KC_F,       KC_U,       KC_P,       CU_QUES,
+    WRKMN_A,    WRKMN_S,    WRKMN_H,    WRKMN_T,    KC_G,       KC_Y,       WRKMN_N,    WRKMN_E,    WRKMN_O,    WRKMN_I,
+    EN_Z_FN,    KC_X,       KC_M,       KC_C,       KC_V,       KC_K,       KC_L,       KC_COMM,    KC_DOT,     ENT_MOU,
                             TAB_NUM,                     EN_SPSM,                       BSP_NAV
   ),
   [_EN_SYM] = LAYOUT_ozinshi(
@@ -141,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FUN]    = LAYOUT_ozinshi(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSCR,    KC_F7,      KC_F8,      KC_F9,      KC_F12,
     KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    KC_SLCK,    KC_F4,      KC_F5,      KC_F6,      KC_F11,
-    XXXXXXX,    EN_BASE,    XXXXXXX,    KC_ENT,     XXXXXXX,    KC_PAUS,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
+    XXXXXXX,    DE_BASE,    EN_BASE,    DW_BASE,    EW_BASE,    KC_PAUS,    KC_F1,      KC_F2,      KC_F3,      KC_F10,
                             KC_TAB,                      KC_SPC,                        KC_BSPC
   ),
   [_DE_LNG] = LAYOUT_ozinshi(
@@ -175,20 +206,42 @@ const key_override_t** key_overrides = (const key_override_t*[]){
     NULL  // Null terminate the array of overrides!
 };
 
-// allow different keys for normal and shifted states on mod-tap modifiers
-bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case HOME_R5:
-            if (record->tap.count && record->event.pressed) {
-                bool     is_german = IS_GERMAN;
-                uint16_t exlm      = is_german ? DE_EXLM : KC_EXLM;
-                uint16_t ques      = is_german ? DE_QUES : KC_QUES;
+// Determime which key ('?' or '!') should be used according to Shift state
+// and active base layer
+uint16_t getExlmOrQues(void) {
+    bool     is_german = IS_GERMAN;
+    uint16_t exlm      = is_german ? DE_EXLM : KC_EXLM;
+    uint16_t ques      = is_german ? DE_QUES : KC_QUES;
 
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    tap_code16(exlm);  // Send '!' on shift tap
-                } else {
-                    tap_code16(ques);  // Send '?' on tap
-                }
+    return ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) ?  exlm : ques;
+}
+
+// allow different keys for normal and shifted states
+bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
+    static uint16_t registeredKeycode = KC_NO;
+
+    // If a custom shift key is registered, then this event is either
+    // releasing it or manipulating another key at the same time. Either way,
+    // we release the currently registered key.
+    if (registeredKeycode != KC_NO) {
+        unregister_code16(registeredKeycode);
+        registeredKeycode = KC_NO;
+    }
+
+    switch (keycode) {
+        case CU_QUES:
+            uint8_t mod_state = get_mods();
+            if (record->event.pressed) {
+                registeredKeycode = getExlmOrQues();
+                register_code16(registeredKeycode);
+            }
+            set_mods(mod_state);
+
+            return false;  // Return false to ignore further processing of key
+
+        case QUE_EXL:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(getExlmOrQues());
                 return false;  // Return false to ignore further processing of key
             }
     }
