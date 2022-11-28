@@ -230,12 +230,10 @@ bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
 
     switch (keycode) {
         case CU_QUES:
-            uint8_t mod_state = get_mods();
             if (record->event.pressed) {
                 registeredKeycode = getExlmOrQues();
                 register_code16(registeredKeycode);
             }
-            set_mods(mod_state);
 
             return false;  // Return false to ignore further processing of key
 
