@@ -62,25 +62,25 @@ enum layer_names {
 #define EN_ADIA RALT(KC_Q)
 #define EN_SS RALT(KC_S)
 
-// QWERTY Left-hand home row mods
+// QWERTY left-hand home row mods
 #define QWERT_A LGUI_T(KC_A)
 #define QWERT_S LALT_T(KC_S)
 #define QWERT_D LCTL_T(KC_D)
 #define QWERT_F LSFT_T(KC_F)
 
-// QWERTY Right-hand home row mods
+// QWERTY right-hand home row mods
 #define QWERT_J RSFT_T(KC_J)
 #define QWERT_K RCTL_T(KC_K)
 #define QWERT_L LALT_T(KC_L)
 #define QUE_EXL RGUI_T(CU_QUES)
 
-// Workman Left-hand home row mods
+// Workman left-hand home row mods
 #define WRKMN_A LGUI_T(KC_A)
 #define WRKMN_S LALT_T(KC_S)
 #define WRKMN_H LCTL_T(KC_H)
 #define WRKMN_T LSFT_T(KC_T)
 
-// Workman Right-hand home row mods
+// Workman right-hand home row mods
 #define WRKMN_N RSFT_T(KC_N)
 #define WRKMN_E RCTL_T(KC_E)
 #define WRKMN_O LALT_T(KC_O)
