@@ -53,6 +53,8 @@ enum layer_names {
 };
 
 #define IS_GERMAN IS_LAYER_ON(_DE_BAS) || IS_LAYER_ON(_DW_BAS)
+#define DE_LAYERS ((1 << _DE_BAS) | (1 << _DW_BAS) | (1 << _DE_SYM) | (1 << _DE_LNG))
+#define EN_LAYERS ((1 << _EN_BAS) | (1 << _EW_BAS) | (1 << _EN_SYM) | (1 << _EN_LNG))
 
 // german specific symbol keys available on english international keyboard
 #define EN_EURO RALT(KC_5)
@@ -122,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             TAB_NUM,                     DE_SPSM,                       BSP_NAV
   ),
   [_DW_BAS] = LAYOUT_ozinshi(
-    DE_Q_LN,    DE_D,       DE_R,       DE_W,       DE_B,       DE_J,       DE_F,       DE_U,       DE_P,       CU_QUES,
+    DE_Q_LN,    DE_D,       DE_R,       DE_W,       DE_B,       DE_J,       DE_F,       DE_U,       DE_P,       DE_QUES,
     WRKMN_A,    WRKMN_S,    WRKMN_H,    WRKMN_T,    DE_G,       DE_Y,       WRKMN_N,    WRKMN_E,    WRKMN_O,    WRKMN_I,
     DE_Z_FN,    DE_X,       DE_M,       DE_C,       DE_V,       DE_K,       DE_L,       DE_COMM,    DE_DOT,     ENT_MOU,
                             TAB_NUM,                     DE_SPSM,                       BSP_NAV
@@ -140,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             TAB_NUM,                     EN_SPSM,                       BSP_NAV
   ),
   [_EW_BAS] = LAYOUT_ozinshi(
-    EN_Q_LN,    KC_D,       KC_R,       KC_W,       KC_B,       KC_J,       KC_F,       KC_U,       KC_P,       CU_QUES,
+    EN_Q_LN,    KC_D,       KC_R,       KC_W,       KC_B,       KC_J,       KC_F,       KC_U,       KC_P,       KC_QUES,
     WRKMN_A,    WRKMN_S,    WRKMN_H,    WRKMN_T,    KC_G,       KC_Y,       WRKMN_N,    WRKMN_E,    WRKMN_O,    WRKMN_I,
     EN_Z_FN,    KC_X,       KC_M,       KC_C,       KC_V,       KC_K,       KC_L,       KC_COMM,    KC_DOT,     ENT_MOU,
                             TAB_NUM,                     EN_SPSM,                       BSP_NAV
@@ -191,55 +193,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 // Key overrides (https://docs.qmk.fm/#/feature_key_overrides)
-// shift + '[' = ']'
-const key_override_t ko_de_s_lbrc = ko_make_basic(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC);
-// shift + '{' = '}'
-const key_override_t ko_de_s_lcbr = ko_make_basic(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR);
-// shift + ',' = ';' on main english layer
-const key_override_t ko_en_s_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, 1 << _EN_BAS);
-// shift + '.' = ':' on main english layer
-const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, 1 << _EN_BAS);
+// shift + '[' = ']' on german layers
+const key_override_t ko_de_s_lbrc = ko_make_with_layers(MOD_MASK_SHIFT, DE_LBRC, DE_RBRC, DE_LAYERS);
+// shift + '{' = '}' on german layers
+const key_override_t ko_de_s_lcbr = ko_make_with_layers(MOD_MASK_SHIFT, DE_LCBR, DE_RCBR, DE_LAYERS);
+// shift + ',' = ';' on english layers
+const key_override_t ko_en_s_comm = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMM, KC_SCLN, EN_LAYERS);
+// shift + '.' = ':' on english layers
+const key_override_t ko_en_s_dot = ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLN, EN_LAYERS);
+// shift + '?' = '!' on english layers
+const key_override_t ko_en_s_ques = ko_make_with_layers(MOD_MASK_SHIFT, KC_QUES, KC_EXLM, EN_LAYERS);
+// shift + '?' = '!' on german layers
+const key_override_t ko_de_s_ques = ko_make_with_layers(MOD_MASK_SHIFT, DE_QUES, DE_EXLM, DE_LAYERS);
 
 // This globally defines all key overrides to be used
 const key_override_t** key_overrides = (const key_override_t*[]){
-    &ko_de_s_lbrc, &ko_de_s_lcbr, &ko_en_s_comm, &ko_en_s_dot,
+    &ko_de_s_lbrc, &ko_de_s_lcbr, &ko_en_s_comm, &ko_en_s_dot, &ko_en_s_ques, &ko_de_s_ques,
     NULL  // Null terminate the array of overrides!
 };
 
-// Determime which key ('?' or '!') should be used according to Shift state
-// and active base layer
-uint16_t getExlmOrQues(void) {
-    bool     is_german = IS_GERMAN;
-    uint16_t exlm      = is_german ? DE_EXLM : KC_EXLM;
-    uint16_t ques      = is_german ? DE_QUES : KC_QUES;
-
-    return ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT) ?  exlm : ques;
-}
-
 // allow different keys for normal and shifted states
 bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
-    static uint16_t registeredKeycode = KC_NO;
-
-    // If a custom shift key is registered, then this event is either
-    // releasing it or manipulating another key at the same time. Either way,
-    // we release the currently registered key.
-    if (registeredKeycode != KC_NO) {
-        unregister_code16(registeredKeycode);
-        registeredKeycode = KC_NO;
-    }
-
     switch (keycode) {
-        case CU_QUES:
-            if (record->event.pressed) {
-                registeredKeycode = getExlmOrQues();
-                register_code16(registeredKeycode);
-            }
-
-            return false;  // Return false to ignore further processing of key
-
         case QUE_EXL:
             if (record->tap.count && record->event.pressed) {
-                tap_code16(getExlmOrQues());
+                uint16_t code = ((get_mods() | get_weak_mods()) & MOD_MASK_SHIFT)
+                    ? IS_GERMAN ? DE_EXLM : KC_EXLM
+                    : IS_GERMAN ? DE_QUES : KC_QUES;
+
+                tap_code16(code);
+           
                 return false;  // Return false to ignore further processing of key
             }
     }
