@@ -34,6 +34,8 @@ void keyboard_post_init_user(void) {
 
 enum custom_keycodes {
     CU_QUES = SAFE_RANGE,
+    CU_UNDO,
+    CU_REDO,
 };
 
 enum layer_names {
@@ -51,7 +53,7 @@ enum layer_names {
     _EN_LNG,  // foreign languages support (EN_)
 };
 
-#define IS_GERMAN IS_LAYER_ON(_DE_BAS) || IS_LAYER_ON(_DW_BAS)
+#define IS_GERMAN (IS_LAYER_OFF(_EN_BAS) && IS_LAYER_OFF(_EW_BAS))
 #define DE_LAYERS ((1 << _DE_BAS) | (1 << _DW_BAS) | (1 << _DE_SYM) | (1 << _DE_LNG))
 #define EN_LAYERS ((1 << _EN_BAS) | (1 << _EW_BAS) | (1 << _EN_SYM) | (1 << _EN_LNG))
 
@@ -108,11 +110,11 @@ enum layer_names {
 #define EW_BASE TO(_EW_BAS)
 
 // shortcuts
-#define U_RDO C(S(DE_Z))
+#define U_RDO CU_REDO
 #define U_PST S(KC_INS)
 #define U_CPY C(KC_INS)
 #define U_CUT S(KC_DEL)
-#define U_UND C(DE_Z)
+#define U_UND CU_UNDO
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -229,6 +231,37 @@ bool process_custom_mod_tap(uint16_t keycode, keyrecord_t* record) {
     return true;
 }
 
+// allow producing different keys for english and german layers
+bool process_language_specific_keycode(uint16_t keycode, keyrecord_t* record) {
+    static uint16_t registered_keycode = KC_NO;
+
+    // If a custom key is registered, then this event is either
+    // releasing it or manipulating another key at the same time.
+    // Either way, we release the currently registered key.
+    if (registered_keycode != KC_NO) {
+        unregister_code16(registered_keycode);
+        registered_keycode = KC_NO;
+    }
+
+    if (record->event.pressed) {  // Press event.
+        switch (keycode) {
+            case CU_REDO:
+                registered_keycode = IS_GERMAN ? C(S(DE_Z)) : C(S(KC_Z));
+                register_code16(registered_keycode);
+
+                return false;  // Return false to ignore further processing of key
+
+            case CU_UNDO:
+                registered_keycode = IS_GERMAN ? C(DE_Z) : C(KC_Z);
+                register_code16(registered_keycode);
+
+                return false;  // Return false to ignore further processing of key
+        }
+    }
+
+    return true;
+}
+
 // foreign languages support for CAPS_WORD
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
@@ -279,5 +312,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         get_mods());
     #endif
     */
-    return process_custom_mod_tap(keycode, record) && true;
+    return
+        process_custom_mod_tap(keycode, record) &&
+        process_language_specific_keycode(keycode, record) &&
+        true;
 }
