@@ -17,8 +17,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-// allow fast typing on home row mods
-#define IGNORE_MOD_TAP_INTERRUPT
-
 // enable rapid switch from tap to hold, disables double tap hold auto-repeat
 #define TAPPING_FORCE_HOLD
