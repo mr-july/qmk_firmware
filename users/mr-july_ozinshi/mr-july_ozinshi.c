@@ -317,3 +317,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         process_language_specific_keycode(keycode, record) &&
         true;
 }
+
+#ifdef OZINSHI_ENABLE_RGB_LAYER_INDICATION
+
+// Light LEDs when keyboard layer is active
+bool rgb_matrix_indicators_user(void) {
+    if (IS_LAYER_ON(_DE_BAS) || IS_LAYER_ON(_EN_BAS) || IS_LAYER_ON(_DW_BAS) || IS_LAYER_ON(_EW_BAS)) {
+        rgb_matrix_set_color(0, RGB_BLACK);
+
+        if (host_keyboard_led_state().caps_lock) {
+            rgb_matrix_set_color(0, RGB_WHITE);
+        }
+    }
+
+    if (IS_LAYER_ON(_NAV)) {
+        rgb_matrix_set_color(0, RGB_BLUE);
+    }
+
+    if (IS_LAYER_ON(_NUM)) {
+        if (host_keyboard_led_state().num_lock) {
+            rgb_matrix_set_color(0, RGB_GREEN);
+        } else {
+            rgb_matrix_set_color(0, RGB_BLUE);
+        }
+    }
+
+    if (IS_LAYER_ON(_DE_SYM) || IS_LAYER_ON(_EN_SYM)) {
+        rgb_matrix_set_color(0, RGB_ORANGE);
+    }
+
+    if (IS_LAYER_ON(_FUN)) {
+        rgb_matrix_set_color(0, RGB_PURPLE);
+    }
+
+    return true;
+}
+
+#endif /* ifdef OZINSHI_ENABLE_RGB_LAYER_INDICATION */
