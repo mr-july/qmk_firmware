@@ -161,10 +161,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             CW_TOGG,                     KC_SPC,                        XXXXXXX
   ),
   [_MOU]    = LAYOUT_ozinshi(
-    KC_WH_U,    KC_WH_U,    KC_MS_U,    KC_WH_D,    KC_WH_D,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_RBT,
-    KC_WH_L,    KC_MS_L,    KC_MS_D,    KC_MS_R,    KC_WH_R,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
+    MS_WHLU,    MS_WHLU,    MS_UP,      MS_WHLD,    MS_WHLD,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_RBT,
+    MS_WHLL,    MS_LEFT,    MS_DOWN,    MS_RGHT,    MS_WHLR,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
-                            KC_BTN2,                     KC_BTN1,                       KC_BTN3
+                            MS_BTN2,                     MS_BTN1,                       MS_BTN3
   ),
   [_NUM]    = LAYOUT_ozinshi(
     U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,      KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,
@@ -208,7 +208,7 @@ const key_override_t ko_en_s_ques = ko_make_with_layers(MOD_MASK_SHIFT, KC_QUES,
 const key_override_t ko_de_s_ques = ko_make_with_layers(MOD_MASK_SHIFT, DE_QUES, DE_EXLM, DE_LAYERS);
 
 // This globally defines all key overrides to be used
-const key_override_t** key_overrides = (const key_override_t*[]){
+const key_override_t *key_overrides[] = {
     &ko_de_s_lbrc, &ko_de_s_lcbr, &ko_en_s_comm, &ko_en_s_dot, &ko_en_s_ques, &ko_de_s_ques,
     NULL  // Null terminate the array of overrides!
 };
