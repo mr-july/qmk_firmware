@@ -157,8 +157,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAV]    = LAYOUT_ozinshi(
     KC_PGUP,    KC_BSPC,    KC_UP,      KC_DEL,     KC_PGDN,    U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,
     KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_END,     XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,
-    KC_CAPS,    KC_TAB,     KC_INS,     KC_ENT,     KC_ENT,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
                             CW_TOGG,                     KC_SPC,                        XXXXXXX
+    KC_CAPS,    KC_TAB,     KC_INS,     KC_SPC,     KC_ENT,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,
   ),
   [_MOU]    = LAYOUT_ozinshi(
     MS_WHLU,    MS_WHLU,    MS_UP,      MS_WHLD,    MS_WHLD,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_RBT,
